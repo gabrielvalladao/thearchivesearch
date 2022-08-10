@@ -1,0 +1,522 @@
+<style>
+    body {
+        box-sizing: border-box;
+        color: #202124;
+        font-size: 14px;
+        letter-spacing: 0.09px;
+        text-overflow: ellipsis;
+    }
+    
+     :root {
+        --menu-width: auto;
+        --menu-height: 448px;
+        --hover-bg-color: #e8f0fe;
+        --active-bg-color: #d5e0f2;
+    }
+    
+    .clear-df-abbr {
+        text-decoration: none;
+    }
+    
+    .header-grid {
+        display: -webkit-inline-box;
+        justify-items: center;
+    }
+    
+    .menu-container {
+        width: 24px;
+        position: relative;
+        margin-right: 22px;
+    }
+    
+    .menu {
+        position: absolute;
+        top: 38px;
+        left: -535%;
+        transform: translateX(-50%);
+        width: var(--menu-width);
+        height: var(--menu-height);
+        background-color: white;
+        overflow-y: scroll;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 2px 6px 2px rgba(60, 64, 67, 0.15);
+    }
+    
+    .menu-btn>svg {
+        text-align: center;
+        height: 48px;
+        width: 48px;
+        position: relative;
+        display: block;
+        color: #5f6368;
+    }
+    
+    [data-is-closed="false"] .menu-btn:before {
+        content: "";
+        background-color: rgba(60, 64, 67, 0.2);
+        border-radius: 50%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        transform: scale(1.5);
+        display: block;
+        z-index: -10;
+    }
+    
+    [data-is-closed="true"] .menu {
+        display: none;
+    }
+    
+    .icons-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
+        gap: 0.5rem;
+        padding: 20px 16px 20px 20px;
+    }
+    
+    .divider {
+        height: 1px;
+        background-color: #e8eaed;
+    }
+    
+    .link-launcher {
+        height: 84px;
+        width: 84px;
+        text-decoration: none;
+        color: initial;
+        position: relative;
+        text-align: center;
+        display: grid;
+        z-index: 10;
+    }
+    
+    .link-launcher>span {
+        white-space: nowrap;
+        overflow: hidden;
+        width: 76px;
+        display: inline-block;
+        text-overflow: ellipsis;
+    }
+    
+    .bg-hover:hover:before {
+        content: "";
+        background-color: var(--hover-bg-color);
+        border-radius: 8px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        transform: scale(1.1);
+        display: block;
+        z-index: -10;
+    }
+    
+    [data-is-closed="true"] .circle-hover:hover:before {
+        content: "";
+        background-color: rgba(60, 64, 67, 0.08);
+        border-radius: 50%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        transform: scale(1.5);
+        display: block;
+        z-index: -10;
+    }
+    
+    .bg-hover:hover:active:before {
+        background-color: var(--active-bg-color);
+    }
+    
+    .pointer {
+        cursor: pointer;
+    }
+    
+    .google-icons {
+        display: inline-block;
+        height: 64px;
+        vertical-align: top;
+        width: 64px;
+        background-image: url("https://ssl.gstatic.com/gb/images/p1_799229b0.png");
+        background-size: 64px 2962px;
+        margin-left: 5px;
+    }
+    
+    .avatar-icon {
+        background-position: 0 -2691px;
+    }
+    
+    .search-icon {
+        background-position: 0 -690px;
+    }
+    
+    .gmail-icon {
+        background-position: 0 -1449px;
+    }
+    
+    .drive-icon {
+        background-position: 0 -1380px;
+    }
+    
+    .docs-icon {
+        background-position: 0 -2622px;
+    }
+    
+    .sheets-icon {
+        background-position: 0 -276px;
+    }
+    
+    .presentation-icon {
+        background-position: 0 -1242px;
+    }
+    
+    .calendar-icon {
+        background-position: 0 -2829px;
+    }
+    
+    .chat.icon {
+        background-position: 0 -345px;
+    }
+    
+    .meet-icon {
+        background-position: 0 -2001px;
+    }
+    
+    .sites-icon {
+        background-position: 0 -621px;
+    }
+    
+    .contacts-icon {
+        background-position: 0 -1518px;
+    }
+    
+    .discuss-icon {
+        background-position: 0 -1104px;
+    }
+    
+    .youtube-icon {
+        background-position: 0 -1863px;
+    }
+    
+    .play-icon {
+        background-position: 0 -1035px;
+    }
+    
+    .maps-icon {
+        background-position: 0 -138px;
+    }
+    
+    .news-icon {
+        background-position: 0 -414px;
+    }
+    
+    .photos-icon {
+        background-position: 0 -2760px;
+    }
+    
+    .translator-icon {
+        background-position: 0 -828px;
+    }
+    
+    .duo-icon {
+        background-position: 0 -2346px;
+    }
+    
+    .chrome-icon {
+        background-position: 0 -1725px;
+    }
+    
+    .books-icon {
+        background-position: 0 -2415px;
+    }
+    
+    .art-culture-icon {
+        background-position: 0 -1173px;
+    }
+    
+    .ads-icon {
+        background-position: 0 -552px;
+    }
+    
+    .blogger-icon {
+        background-position: 0 -966px;
+    }
+    
+    .shopping-icon {
+        background-position: 0 -2208px;
+    }
+    
+    .hangout-icon {
+        background-position: 0 -1794px;
+    }
+    
+    .keep-icon {
+        background-position: 0 -897px;
+    }
+    
+    .jamboard-icon {
+        background-position: 0 -1932px;
+    }
+    
+    .earth-icon {
+        background-position: 0 -2277px;
+    }
+    
+    .collections-icon {
+        background-position: 0 -759px;
+    }
+    
+    .podcasts-icon {
+        background-position: 0 -1311px;
+    }
+    /* ----------------- MORE BUTTON -------------- */
+    
+    .more-btn-container {
+        text-align: center;
+        position: relative;
+    }
+    
+    .more-btn {
+        width: 55%;
+        background-color: white;
+        border: 1px solid #dadce0;
+        border-radius: 4px;
+        color: #ffffff;
+        font: 400 13px/16px "inter", Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+        margin: 16px 0 20px 0;
+        padding: 10px 24px;
+    }
+    
+    .more-btn:hover {
+        background-color: var(--hover-bg-color);
+        border-color: var(--active-bg-color);
+    }
+    
+    .more-btn:active {
+        outline: 0;
+        background-color: var(--active-bg-color);
+    }
+    
+    .more-btn:focus {
+        outline: 0;
+    }
+    
+    .more-btn:focus:active {
+        background-color: #ecf3fe;
+        border-color: transparent;
+        box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 2px 6px 2px rgba(60, 64, 67, 0.15);
+    }
+    /* ----------------- SCROLLBAR -------------- 
+    
+     ::-webkit-scrollbar {
+        width: 16px;
+    }
+    
+     ::-webkit-scrollbar-thumb {
+        background: #dadce0;
+        background-clip: padding-box;
+        border: 4px solid transparent;
+        border-radius: 8px;
+        box-shadow: none;
+        min-height: 50px;
+    }
+    
+     ::-webkit-scrollbar-track {
+        background: none;
+        border: none;
+    } */
+</style>
+
+<script>
+    window.console = window.console || function(t) {};
+</script>
+
+
+
+<script>
+    if (document.location.search.match(/type=embed/gi)) {
+        window.parent.postMessage("resize", "*");
+    }
+</script>
+
+
+</head>
+
+<body translate="no">
+    <header class="header-grid">
+        <div id="menu-container" class='menu-container' data-is-closed="true">
+            <div id="menu-btn" class="menu-btn circle-hover pointer">
+                <abbr class="clear-df-abbr" title="Google applications">
+        <svg viewBox="0 0 24 24" style="FILL: white;">
+          <path d="M6,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM16,6c0,1.1 0.9,2 2,2s2,-0.9 2,-2 -0.9,-2 -2,-2 -2,0.9 -2,2zM12,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2z"></path>
+        </svg>
+      </abbr>
+
+            </div>
+
+            <div id="menu" class="menu">
+                <div class="icons-container">
+
+                    <a href="admin/index.php" class="link-launcher bg-hover">
+                        <i class="google-icons avatar-icon"></i>
+                        <span>Admin</span>
+
+                    </a>
+
+                    <a href="#" class="link-launcher bg-hover">
+                        <i class="google-icons search-icon"></i>
+                        <span>Saúde</span>
+                    </a>
+
+                    <a href="#" class="link-launcher bg-hover">
+                        <i class="google-icons maps-icon"></i>
+                        <span>Política</span>
+                    </a>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="icons-container">
+                    <a href="#" class="link-launcher bg-hover">
+                        <i class="google-icons docs-icon"></i>
+                        <span>Docs</span>
+                    </a>
+
+                    <a href="#" class="link-launcher bg-hover">
+                        <i class="google-icons sheets-icon"></i>
+                        <span>Sheets</span>
+                    </a>
+
+                    <a href="#" class="link-launcher bg-hover">
+                        <i class="google-icons presentation-icon"></i>
+                        <span>Presentations</span>
+                    </a>
+
+                    <a href="#" class="link-launcher bg-hover">
+                        <i class="google-icons books-icon"></i>
+                        <span>Books</span>
+                    </a>
+
+                    <a href="#" class="link-launcher bg-hover">
+                        <i class="google-icons blogger-icon"></i>
+                        <span>Blogger</span>
+                    </a>
+
+                    <a href="#" class="link-launcher bg-hover">
+                        <i class="google-icons hangout-icon"></i>
+                        <span>Hangouts</span>
+                    </a>
+
+                    <a href="#" class="link-launcher bg-hover">
+                        <i class="google-icons keep-icon"></i>
+                        <span>Keep</span>
+                    </a>
+
+                    <a href="#" class="link-launcher bg-hover">
+                        <i class="google-icons jamboard-icon"></i>
+                        <span>Jamboard</span>
+                    </a>
+
+                    <a href="#" class="link-launcher bg-hover">
+                        <i class="google-icons earth-icon"></i>
+                        <span>Earth</span>
+                    </a>
+                    <a href="#" class="link-launcher bg-hover">
+                        <i class="google-icons collections-icon"></i>
+                        <span>Collections</span>
+                    </a>
+                    <a href="#" class="link-launcher bg-hover">
+                        <i class="google-icons art-culture-icon"></i>
+                        <span>Art and culture</span>
+                    </a>
+                    <a href="#" class="link-launcher bg-hover">
+                        <i class="google-icons ads-icon"></i>
+                        <span>Google Ads</span>
+                    </a>
+                    <a href="#" class="link-launcher bg-hover">
+                        <i class="google-icons podcasts-icon"></i>
+                        <span>Podcasts</span>
+                    </a>
+                </div>
+
+                <div class="more-btn-container">
+
+                    <button class="more-btn pointer">More from Google</button>
+                </div>
+            </div>
+        </div>
+       <!-- <div id="menu-container" class="menu-container" data-is-closed="true">
+            <a href="admin/index.php">
+                <div id="menu-btn" class="menu-btn circle-hover pointer">
+                    <abbr class="clear-df-abbr" title="Configuração">
+        <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="fill: white;"><path d="M13.85 22.25h-3.7c-.74 0-1.36-.54-1.45-1.27l-.27-1.89c-.27-.14-.53-.29-.79-.46l-1.8.72c-.7.26-1.47-.03-1.81-.65L2.2 15.53c-.35-.66-.2-1.44.36-1.88l1.53-1.19c-.01-.15-.02-.3-.02-.46 0-.15.01-.31.02-.46l-1.52-1.19c-.59-.45-.74-1.26-.37-1.88l1.85-3.19c.34-.62 1.11-.9 1.79-.63l1.81.73c.26-.17.52-.32.78-.46l.27-1.91c.09-.7.71-1.25 1.44-1.25h3.7c.74 0 1.36.54 1.45 1.27l.27 1.89c.27.14.53.29.79.46l1.8-.72c.71-.26 1.48.03 1.82.65l1.84 3.18c.36.66.2 1.44-.36 1.88l-1.52 1.19c.01.15.02.3.02.46s-.01.31-.02.46l1.52 1.19c.56.45.72 1.23.37 1.86l-1.86 3.22c-.34.62-1.11.9-1.8.63l-1.8-.72c-.26.17-.52.32-.78.46l-.27 1.91c-.1.68-.72 1.22-1.46 1.22zm-3.23-2h2.76l.37-2.55.53-.22c.44-.18.88-.44 1.34-.78l.45-.34 2.38.96 1.38-2.4-2.03-1.58.07-.56c.03-.26.06-.51.06-.78s-.03-.53-.06-.78l-.07-.56 2.03-1.58-1.39-2.4-2.39.96-.45-.35c-.42-.32-.87-.58-1.33-.77l-.52-.22-.37-2.55h-2.76l-.37 2.55-.53.21c-.44.19-.88.44-1.34.79l-.45.33-2.38-.95-1.39 2.39 2.03 1.58-.07.56a7 7 0 0 0-.06.79c0 .26.02.53.06.78l.07.56-2.03 1.58 1.38 2.4 2.39-.96.45.35c.43.33.86.58 1.33.77l.53.22.38 2.55z"></path><circle cx="12" cy="12" r="3.5"></circle></svg>
+      </abbr>
+
+                </div>
+            </a>
+        </div> -->
+    </header>
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-1b93190375e9ccc259df3a57c1abc0e64599724ae30d7ea4c6877eb615f89387.js"></script>
+
+
+    <script id="rendered-js">
+        document.addEventListener("DOMContentLoaded", main);
+
+        function main() {
+            document.addEventListener("click", handleBgClick);
+
+            const menuContainer = document.querySelector("#menu-container");
+            const isMenuClosedAttrName = 'data-is-closed';
+
+            const menuBtn = document.querySelector("#menu-btn");
+            const menu = document.querySelector("#menu");
+
+            menuBtn.addEventListener("click", toggleMenu);
+            menuBtn.addEventListener("click", preventDefault);
+
+            menu.addEventListener("click", preventDefault);
+
+            function preventDefault(e) {
+                e.preventDefault();
+            }
+
+            function toggleMenu(e) {
+                const isMenuClosed =
+                    menuContainer.getAttribute(isMenuClosedAttrName);
+                if (isMenuClosed === 'true') {
+                    openMenu();
+                } else {
+                    closeMenu();
+                }
+            }
+
+            function openMenu() {
+                menu.scrollTop = 0;
+                menuContainer.setAttribute(isMenuClosedAttrName, 'false');
+            }
+
+            function closeMenu() {
+                menuContainer.setAttribute(isMenuClosedAttrName, 'true');
+            }
+
+            //   Click on background closes menu.
+            function handleBgClick(e) {
+                const wentEventNotThroughMenu = !e.path.includes(menu);
+                const wentEventNotThroughMenuBtn = !e.path.includes(menuBtn);
+                if (wentEventNotThroughMenu && wentEventNotThroughMenuBtn) {
+                    closeMenu();
+                }
+            }
+        }
+        //# sourceURL=pen.js
+    </script>
+
+
+
+</body>

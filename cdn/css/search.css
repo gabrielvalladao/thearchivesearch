@@ -1,0 +1,59 @@
+.header .searchForm #query {
+    width: 400px !important;
+}
+
+.header {
+    text-align: center;
+    align-items: center;
+}
+
+.container {
+    width: 600px;
+}
+
+.container .info {
+    color: gray;
+}
+
+.results {
+    width: 600px;
+}
+
+.result {
+    margin: 20px 0px;
+}
+
+.result .title {
+    margin-bottom: 0px;
+    font-size: 17px;
+}
+
+.result .url {
+    font-size: 13px;
+    color: #006621;
+    overflow: hidden;
+    height: 20px;
+}
+
+.pages {
+    margin: 35px auto 30px auto;
+}
+
+.pages .button {
+    margin: 0px 3px 3px;
+    color: #ffffff;
+}
+
+.pages .button.current {
+    background: black;
+}
+
+.row {
+    display: flex;
+}
+
+.col-1 {
+    -ms-flex: 0 0 33.333333%;
+    flex: 1 0 33.333333%;
+    max-width: 39.333333%;
+}
